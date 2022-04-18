@@ -5,8 +5,10 @@ import Image from "next/image";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const PokemonDetail: NextPage = ({ data }: any) => {
+  const router = useRouter();
   const pokemon = {
     name: data.name.charAt(0).toUpperCase() + data.name.slice(1),
     height: data.height,
@@ -27,8 +29,8 @@ const PokemonDetail: NextPage = ({ data }: any) => {
         data.types[1].type.name.slice(1)
       : null,
   };
-  const goBack = window.location.href.slice(0, -1) + (data.id - 1);
-  const goNext = window.location.href.slice(0, -1) + (data.id + 1);
+  const goBack = router.asPath.slice(0, -1) + (data.id - 1);
+  const goNext = router.asPath.slice(0, -1) + (data.id + 1);
   return (
     <Box
       sx={{
